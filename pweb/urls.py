@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     # Alterar de 'home/' para '' define a raiz do site para a app home
     path('', include('home.urls')), 
+
+    path('admin/', admin.site.urls),
+
 ]
