@@ -1,21 +1,27 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
 from django.http import HttpResponse
 
-# View criada nos slides anteriores
+
 def index(request):
-    return HttpResponse("A view index funcionou, Wow!")
+    html_content = """
+    <h1>Página Inicial</h1>
+    <p>A view index funcionou, Wow!</p>
+    <hr>
+    <a href="/admin/"><button>Admin</button></a>
+    <a href="/sobre/"><button>Sobre</button></a>
+    <a href="/ajuda/"><button>Ajuda</button></a>
+    <a href="/contato/"><button>Contato</button></a>
+    """
+    return HttpResponse(html_content)
 
-# Exercício: Criar view 'sobre' com tag h1 [cite: 3591]
+
 def sobre(request):
-    return HttpResponse("<h1>Sobre o Sistema</h1>")
+    return HttpResponse("<h1>Sobre o Sistema</h1> <br> <a href='/'>Voltar</a>")
 
-# Exercício: Criar view 'contato' [cite: 3597]
+
 def contato(request):
-    return HttpResponse("Esta é a página de contato.")
+    return HttpResponse("Esta é a página de contato. <br> <a href='/'>Voltar</a>")
 
-# Exercício: Criar view 'ajuda' [cite: 3599]
+
 def ajuda(request):
-    return HttpResponse("Esta é a página de ajuda.")
+    return HttpResponse("Esta é a página de ajuda. <br> <a href='/'>Voltar</a>")
