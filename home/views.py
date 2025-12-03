@@ -1,27 +1,38 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
+# View da página inicial
 def index(request):
-    html_content = """
-    <h1>Página Inicial</h1>
-    <p>A view index funcionou, Wow!</p>
-    <hr>
-    <a href="/admin/"><button>Admin</button></a>
-    <a href="/sobre/"><button>Sobre</button></a>
-    <a href="/ajuda/"><button>Ajuda</button></a>
-    <a href="/contato/"><button>Contato</button></a>
-    """
-    return HttpResponse(html_content)
+    return render(request, 'index.html')
 
-
+# View Sobre
 def sobre(request):
-    return HttpResponse("<h1>Sobre o Sistema</h1> <br> <a href='/'>Voltar</a>")
+    return render(request, 'sobre.html')
 
-
+# View Contato
 def contato(request):
-    return HttpResponse("Esta é a página de contato. <br> <a href='/'>Voltar</a>")
+    return render(request, 'contato.html')
 
-
+# View Ajuda
 def ajuda(request):
-    return HttpResponse("Esta é a página de ajuda. <br> <a href='/'>Voltar</a>")
+    return render(request, 'ajuda.html')
+
+# --- Exercícios Anteriores (Mantidos) ---
+
+def perfil(request, usuario):
+    # Pode criar um perfil.html se quiser, ou retornar simples por enquanto
+    return HttpResponse(f"<h1>Página de Perfil</h1><p>Esse é o perfil de {usuario}</p>")
+
+def diasemana(request, dia):
+    dias = {
+        1: "Domingo",
+        2: "Segunda-feira",
+        3: "Terça-feira",
+        4: "Quarta-feira",
+        5: "Quinta-feira",
+        6: "Sexta-feira",
+        7: "Sábado"
+    }
+    dia_nome = dias.get(dia, "Dia inválido")
+    contexto = {'dia_numero': dia, 'dia_nome': dia_nome}
+    return render(request, 'diasemana.html', contexto)
