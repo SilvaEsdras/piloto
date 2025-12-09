@@ -1,15 +1,30 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Dia da Semana</title>
-</head>
-<body>
-    <h1>Página dia da Semana</h1>
+{% extends 'base.html' %}
+
+{% block titulo %} Dia da Semana {% endblock %}
+
+{% block conteudo %}
     
-    <p>O dia passado corresponde a <strong>{{ dia_nome }}</strong></p>
-    
+    <h3>Resultado da Consulta</h3>
+    <hr>
+
+    {% if dia_nome == "Dia inválido" %}
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <strong>Erro:</strong> O número informado ({{ dia_numero }}) não corresponde a um dia válido.
+            <br>
+            <small>Por favor, informe um número entre 1 e 7.</small>
+        </div>
+    {% else %}
+        <div class="alert alert-success" role="alert">
+            <i class="fas fa-calendar-day"></i>
+            O dia número <strong>{{ dia_numero }}</strong> corresponde a:
+            <h2 class="mt-2">{{ dia_nome }}</h2>
+        </div>
+    {% endif %}
+
     <br>
-    <a href="/">Voltar para Home</a>
-</body>
-</html>
+    <a href="{% url 'index' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Voltar para Home
+    </a>
+
+{% endblock %}
