@@ -3,6 +3,13 @@
 {% block titulo %} Listagem de Produtos {% endblock %}
 
 {% block conteudo %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Produtos</h2>
+    <button class="btn btn-primary" onclick="location.href='{% url 'form_produto' %}'">
+        Novo Produto
+    </button>
+</div>
+
 <table class="table table-bordered table-hover">
     <thead class="thead-dark">
         <tr>
