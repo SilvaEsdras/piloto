@@ -64,4 +64,42 @@ def diasemana(request, dia):
     return render(request, 'diasemana.html', contexto)
 
 def perfil(request, usuario):
-    return HttpResponse(f"<h1>Perfil: {usuario}</h1>")
+    contexto = {
+        'usuario': usuario,
+        'email': f"{usuario.lower()}@email.com", # Simulação de dados
+        'telefone': '(86) 99999-9999'
+    }
+    return render(request, 'perfil.html', contexto)
+
+def detalhes_produto(request, id):
+    # Busca o item na lista
+    item = next((p for p in DADOS_PRODUTOS if p['id'] == id), None)
+    
+    contexto = {
+        'item': item
+    }
+    return render(request, 'produto/detalhes.html', contexto)
+
+def editar_produto(request, id):
+    # Busca o item para preencher o formulário
+    item = next((p for p in DADOS_PRODUTOS if p['id'] == id), None)
+    
+    # Cria o formulário preenchido com os dados do item
+    if item:
+        form = ProdutoForm(initial={'nome': item['nome'], 'preco': item['preco']})
+    else:
+        form = ProdutoForm()
+        
+    contexto = {
+        'form': form,
+        'item': item # Passamos o item caso queira mostrar o ID ou nome no título
+    }
+    return render(request, 'produto/form.html', contexto)
+
+def excluir_produto(request, id):
+    item = next((p for p in DADOS_PRODUTOS if p['id'] == id), None)
+    
+    contexto = {
+        'item': item
+    }
+    return render(request, 'produto/excluir.html', contexto)

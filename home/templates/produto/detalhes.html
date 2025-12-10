@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Detalhes do Produto {% endblock %}
+
+{% block conteudo %}
+<div class="card">
+    <div class="card-header bg-info text-white">
+        Detalhes do Produto
+    </div>
+    <div class="card-body">
+        {% if item %}
+            <h4 class="card-title">Você está vendo detalhes do Produto ID {{ item.id }}</h4>
+            <p class="card-text"><strong>Nome:</strong> {{ item.nome }}</p>
+            <p class="card-text"><strong>Preço:</strong> R$ {{ item.preco }}</p>
+        {% else %}
+            <p>Produto não encontrado.</p>
+        {% endif %}
+        
+        <a href="{% url 'produto' %}" class="btn btn-secondary mt-3">Voltar</a>
+    </div>
+</div>
+{% endblock %}

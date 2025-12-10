@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Excluir Produto {% endblock %}
+
+{% block conteudo %}
+<div class="card border-danger">
+    <div class="card-header bg-danger text-white">
+        Confirmação de Exclusão
+    </div>
+    <div class="card-body">
+        {% if item %}
+            <h4 class="card-title">Você está removendo o Produto ID {{ item.id }}</h4>
+            <p>Tem certeza que deseja excluir o produto <strong>{{ item.nome }}</strong>?</p>
+            
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Sim, Excluir</button>
+                <a href="{% url 'produto' %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        {% else %}
+            <p>Produto não encontrado.</p>
+            <a href="{% url 'produto' %}" class="btn btn-secondary">Voltar</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
