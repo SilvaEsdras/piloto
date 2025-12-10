@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Detalhes do Produto {% endblock %}
+
+{% block conteudo %}
+    
+    {% if item %}
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Detalhes do Item #{{ item.id }}
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{ item.nome }}</h3>
+                <p class="card-text">
+                    <strong>Preço:</strong> R$ {{ item.preco }}
+                </p>
+                <hr>
+                <a href="{% url 'produto' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            <h3>Produto não encontrado!</h3>
+            <p>O produto com ID <strong>{{ id }}</strong> não existe em nossa lista.</p>
+            <a href="{% url 'produto' %}" class="btn btn-primary">Ver Lista de Produtos</a>
+        </div>
+    {% endif %}
+
+{% endblock %}
